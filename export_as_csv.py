@@ -180,6 +180,7 @@ def _catalog_writer(ogdremote):
         'name',
         'title',
         'url',
+        'source_type',
     ]
     with open('catalogs.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_catalog)
@@ -191,6 +192,7 @@ def _catalog_writer(ogdremote):
                 'name': harvester.get('name'),
                 'title': harvester.get('title'),
                 'url': harvester.get('url'),
+                'source_type': harvester.get('source_type'),
             })
     return harvesters
 
