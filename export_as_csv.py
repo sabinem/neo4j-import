@@ -175,7 +175,6 @@ def _catalog_writer(ogdremote):
     if not result.get('count'):
         return []
     harvesters = result.get('results')
-    import pdb; pdb.set_trace()
     fieldnames_catalog = [
         'id',
         'name',
@@ -203,7 +202,6 @@ def _showcase_writer(ogdremote):
     if not result.get('count'):
         return []
     showcases = result.get('results')
-    import pdb; pdb.set_trace()
     fieldnames_showcase = [
         'id',
         'name',
