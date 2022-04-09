@@ -180,18 +180,17 @@ def _catalog_writer(ogdremote):
         'name',
         'title',
         'url',
-        'config',
     ]
     with open('catalogs.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_catalog)
         writer.writeheader()
         for harvester in harvesters:
+            print(harvester.get('config'))
             writer.writerow({
                 'id': harvester.get('id'),
                 'name': harvester.get('name'),
                 'title': harvester.get('title'),
                 'url': harvester.get('url'),
-                'config': harvester.get('config'),
             })
     return harvesters
 
