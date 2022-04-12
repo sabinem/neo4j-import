@@ -16,6 +16,7 @@ def process(ogdremote):
         organization_datasets = _search_packages_for_organization(ogdremote, organization)
         datasets.extend(organization_datasets)
     _dataset_writer(datasets)
+    _dataset_to_datasets_writer(datasets)
     _dataset_to_group_writer(datasets)
     _dataset_to_organization_writer(datasets)
     _distribution_writer(datasets)
@@ -49,7 +50,7 @@ def _search_packages_for_organization(ogdremote, organization):
 
 def _dataset_writer(datasets):
     fieldnames_dataset = [
-        "identifier",
+        "dataset_identifier",
         "name",
         "title_de",
         "title_fr",
@@ -61,14 +62,19 @@ def _dataset_writer(datasets):
         "description_it",
         "frequency",
         "access_url",
-        ""
+        'issued',
+        'modified',
+        'landing_page',
+        'spatial',
+        'temporal',
+        'relation',
     ]
     with open('datasets.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_dataset)
         writer.writeheader()
         for dataset in datasets:
             writer.writerow({
-                'identifier': dataset.get('identifier'),
+                'dataset_identifier': dataset.get('identifier'),
                 'name': dataset.get('name'),
                 'title_de': dataset.get('title').get('de'),
                 'title_fr': dataset.get('title').get('fr'),
@@ -78,13 +84,20 @@ def _dataset_writer(datasets):
                 'description_fr': dataset.get('description').get('fr'),
                 'description_en': dataset.get('description').get('en'),
                 'description_it': dataset.get('description').get('it'),
+                'access_url': dataset.get('url'),
+                'issued': dataset.get('issued'),
+                'modified': dataset.get('modified'),
+                'landing_page': dataset.get('landing_page'),
+                'spatial': dataset.get('spatial'),
+                'temporal': dataset.get('temporal'),
+                'relation': dataset.get('relation'),
             })
 
 
 def _dataset_to_group_writer(datasets):
     fieldnames_dataset_to_groups = [
-        "groupid",
-        "datasetid",
+        "group_name",
+        "dataset_identifier",
     ]
     with open('datasets_to_groups.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_dataset_to_groups)
@@ -92,15 +105,15 @@ def _dataset_to_group_writer(datasets):
         for dataset in datasets:
             for group in dataset.get('groups'):
                 writer.writerow({
-                    'groupid': group.get('name'),
-                    'datasetid': dataset.get('identifier'),
+                    'group_name': group.get('name'),
+                    'dataset_identifier': dataset.get('identifier'),
                 })
 
 
 def _dataset_to_organization_writer(datasets):
     fieldnames_dataset_to_organization = [
-        "organizationid",
-        "datasetid",
+        "organization_name",
+        "dataset_identifier",
     ]
     with open('datasets_to_organizations.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_dataset_to_organization)
@@ -108,17 +121,18 @@ def _dataset_to_organization_writer(datasets):
         for dataset in datasets:
             organization = dataset.get('organization')
             writer.writerow({
-                'organizationid': organization.get('name'),
-                'datasetid': dataset.get('identifier'),
+                'organization_name': organization.get('name'),
+                'dataset_identifier': dataset.get('identifier'),
             })
 
 
 def _distribution_writer(datasets):
     fieldnames_distribution = [
-        "distributionid",
-        "name",
+        "distribution_id",
         "format",
-        "id",
+        "media_type",
+        "download_url",
+        "rights",
     ]
     with open('distributions.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_distribution)
@@ -127,17 +141,18 @@ def _distribution_writer(datasets):
             if dataset.get('resources'):
                 for resource in dataset.get('resources'):
                     writer.writerow({
-                        'distributionid': resource.get('id'),
-                        'name': resource.get('name'),
+                        'distribution_id': resource.get('id'),
                         'format': resource.get('format'),
-                        'id': resource.get('id'),
+                        'media_type': resource.get('media_type'),
+                        'download_url': resource.get('download_url'),
+                        'rights': resource.get('rights'),
                     })
 
 
 def _dataset_to_distribution_writer(datasets):
     fieldnames_dataset_to_distibutions = [
-        "datasetid",
-        "distributionid",
+        "dataset_identifier",
+        "distribution_id",
     ]
     with open('datasets_to_distributions.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_dataset_to_distibutions)
@@ -146,8 +161,26 @@ def _dataset_to_distribution_writer(datasets):
             if dataset.get('resources'):
                 for resource in dataset.get('resources'):
                     writer.writerow({
-                        'distributionid': resource.get('id'),
-                        'datasetid': dataset.get('identifier'),
+                        'dataset_identifier': dataset.get('identifier'),
+                        'distribution_id': resource.get('id'),
+                    })
+
+
+def _dataset_to_datasets_writer(datasets):
+    fieldnames_dataset_to_datasets = [
+        "dataset_identifier",
+        "see_also_identifier",
+    ]
+    with open('dataset_to_datasets.csv', "w") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames_dataset_to_datasets)
+        writer.writeheader()
+        for dataset in datasets:
+            if dataset.get('see_alsos'):
+                see_also_list = [item.get('dataset_identifier') for item in dataset.get('see_alsos')]
+                for item in see_also_list:
+                    writer.writerow({
+                        'dataset_identifier': dataset.get('identifier'),
+                        'see_also_identifier': item,
                     })
 
 
@@ -155,16 +188,32 @@ def _organizations_writer(ogdremote):
     organizations = ogdremote.action.organization_list()
     organizations_complete = ogdremote.action.organization_list(all_fields=True, organizations=organizations)
     fieldnames_organization = [
-        'name',
-        'title',
+        'organization_name',
+        "title_de",
+        "title_fr",
+        "title_en",
+        "title_it",
+        "description_de",
+        "description_fr",
+        "description_en",
+        "description_it",
+        "url",
     ]
     with open('organizations.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_organization)
         writer.writeheader()
         for organization in organizations_complete:
             writer.writerow({
-                'name': organization.get('name'),
-                'title': organization.get('title')['de'],
+                'organization_name': organization.get('name'),
+                'title_de': organization.get('title').get('de'),
+                'title_fr': organization.get('title').get('fr'),
+                'title_en': organization.get('title').get('en'),
+                'title_it': organization.get('title').get('it'),
+                'description_de': organization.get('description').get('de'),
+                'description_fr': organization.get('description').get('fr'),
+                'description_en': organization.get('description').get('en'),
+                'description_it': organization.get('description').get('it'),
+                'url': organization.get('url'),
             })
     return organizations
 
@@ -176,7 +225,7 @@ def _catalog_writer(ogdremote):
         return []
     harvesters = result.get('results')
     fieldnames_catalog = [
-        'id',
+        'source_id',
         'name',
         'title',
         'url',
@@ -186,9 +235,8 @@ def _catalog_writer(ogdremote):
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_catalog)
         writer.writeheader()
         for harvester in harvesters:
-            print(harvester.get('config'))
             writer.writerow({
-                'id': harvester.get('id'),
+                'source_id': harvester.get('id'),
                 'name': harvester.get('name'),
                 'title': harvester.get('title'),
                 'url': harvester.get('url'),
@@ -204,8 +252,7 @@ def _showcase_writer(ogdremote):
         return []
     showcases = result.get('results')
     fieldnames_showcase = [
-        'id',
-        'name',
+        'showcase_name',
         'title',
         'url',
     ]
@@ -214,8 +261,7 @@ def _showcase_writer(ogdremote):
         writer.writeheader()
         for showcase in showcases:
             writer.writerow({
-                'id': showcase.get('id'),
-                'name': showcase.get('name'),
+                'showcase_name': showcase.get('name'),
                 'title': showcase.get('title'),
                 'url': showcase.get('url'),
             })
@@ -226,18 +272,22 @@ def _group_writer(ogdremote):
     groups = ogdremote.action.group_list()
     groups_complete = ogdremote.action.group_list(all_fields=True)
     fieldnames_group = [
-        'groupid',
-        'name',
-        'title',
+        'group_name',
+        "title_de",
+        "title_fr",
+        "title_en",
+        "title_it",
     ]
     with open('groups.csv', "w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames_group)
         writer.writeheader()
         for group in groups_complete:
             writer.writerow({
-                'groupid': group.get('name'),
-                'name': group.get('name'),
-                'title': group.get('title')['de'],
+                'group_name': group.get('name'),
+                'title_de': group.get('title').get('de'),
+                'title_fr': group.get('title').get('fr'),
+                'title_en': group.get('title').get('en'),
+                'title_it': group.get('title').get('it'),
             })
     return groups
 
