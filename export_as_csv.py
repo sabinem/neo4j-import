@@ -13,6 +13,7 @@ log = logging.getLogger(__name__)
 def process(ogdremote):
     datasets = []
     organizations = ow.organizations_writer(ogdremote)
+    ow.organization_detail_writer(ogdremote, organizations)
     gw.group_writer(ogdremote)
     cw.catalog_writer(ogdremote)
     sw.showcase_writer(ogdremote)
