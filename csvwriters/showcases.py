@@ -75,6 +75,7 @@ def showcase_writer(ogdremote):
                 'showcase_name': showcase.get('name'),
                 'title': showcase.get('title'),
                 'url': showcase.get('url'),
+                'notes': showcase.get('notes'),
             })
 
     with open('showcases_to_datasets.csv', "w") as csvfile:
