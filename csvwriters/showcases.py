@@ -5,7 +5,9 @@ fieldnames_showcase = [
     'title',
     'url',
     'notes',
-    'image_url'
+    'image_url',
+    'showcase_notes_formatted',
+    'image_display_url',
 ]
 fieldnames_showcase_to_datasets = [
     'showcase_name',
@@ -33,7 +35,7 @@ fieldnames_showcases_to_groups = [
 
 def showcase_writer(ogdremote):
     fq = f"dataset_type:showcase"
-    result = ogdremote.action.package_search(fq=fq, rows=100)
+    result = ogdremote.action.ogdch_showcase_search(fq=fq, rows=100)
     if not result.get('count'):
         return []
 
@@ -76,7 +78,9 @@ def showcase_writer(ogdremote):
                 'title': showcase.get('title'),
                 'url': showcase.get('url'),
                 'notes': showcase.get('notes'),
-                'image_url': showcase.get('image_url')
+                'showcase_notes_formatted': showcase.get('showcase_notes_formatted'),
+                'image_url': showcase.get('image_url'),
+                'image_display_url': showcase.get('image_display_url'),
             })
 
     with open('showcases_to_datasets.csv', "w") as csvfile:
