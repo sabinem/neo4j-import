@@ -8,6 +8,8 @@ fieldnames_showcase = [
     'image_url',
     'showcase_notes_formatted',
     'image_display_url',
+    'author',
+    'author_email'
 ]
 fieldnames_showcase_to_datasets = [
     'showcase_name',
@@ -81,6 +83,8 @@ def showcase_writer(ogdremote):
                 'showcase_notes_formatted': showcase.get('showcase_notes_formatted'),
                 'image_url': showcase.get('image_url'),
                 'image_display_url': showcase.get('image_display_url'),
+                'author': showcase.get('author'),
+                'author_email': showcase.get('author_email'),
             })
 
     with open('showcases_to_datasets.csv', "w") as csvfile:
