@@ -7,6 +7,7 @@ import csvwriters.organizations as ow
 import csvwriters.showcases as sw
 import csvwriters.datasets as dw
 import csvwriters.catalogs as cw
+import csvwriters.distributions as distw
 
 log = logging.getLogger(__name__)
 
@@ -24,8 +25,9 @@ def process(ogdremote):
     dw.dataset_to_datasets_writer(datasets)
     dw.dataset_to_group_writer(datasets)
     dw.dataset_to_organization_writer(datasets)
-    dw.distribution_writer(datasets)
+    distw.distribution_writer(datasets)
     dw.dataset_to_distribution_writer(datasets)
+    dw.dataset_to_keyword_writer(datasets)
 
 
 def _search_packages_for_organization(ogdremote, organization):

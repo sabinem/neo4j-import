@@ -49,6 +49,7 @@ fieldnames_dataset_to_organization = [
     "dataset_identifier",
 ]
 
+
 def dataset_writer(datasets):
     with open('datasets.csv', "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_dataset)
@@ -85,22 +86,6 @@ def dataset_to_group_writer(datasets):
                     'group_name': group.get('name'),
                     'dataset_identifier': dataset.get('identifier'),
                 })
-
-
-def distribution_writer(datasets):
-    with open('distributions.csv', "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_distribution)
-        writer.writeheader()
-        for dataset in datasets:
-            if dataset.get('resources'):
-                for resource in dataset.get('resources'):
-                    writer.writerow({
-                        'distribution_id': resource.get('id'),
-                        'format': resource.get('format'),
-                        'media_type': resource.get('media_type'),
-                        'download_url': resource.get('download_url'),
-                        'rights': resource.get('rights'),
-                    })
 
 
 def dataset_to_distribution_writer(datasets):
@@ -140,3 +125,35 @@ def dataset_to_organization_writer(datasets):
                 'organization_name': organization.get('name'),
                 'dataset_identifier': dataset.get('identifier'),
             })
+
+
+def dataset_to_keyword_writer(datasets):
+    languages = ['de', 'fr', 'it', 'en']
+    keywords = {lang: set() for lang in languages}
+    datasets_with_keywords = {lang: list() for lang in languages}
+    for dataset in datasets:
+        dataset_name = dataset.get('name')
+        dataset_keywords = dataset.get('keywords')
+        if keywords:
+            for lang in languages:
+                dataset_with_keyword = (dataset_name, dataset_keywords.get(lang))
+                datasets_with_keywords[lang].append(dataset_with_keyword)
+                for keyword in dataset_keywords.get(lang):
+                    keywords[lang].add(keyword)
+    for lang in languages:
+        with open(f"keywords_{lang}.csv", "w") as csvfile:
+            writer = DictWriter(csvfile, fieldnames=[f'keyword_{lang}'])
+            writer.writeheader()
+            for keyword in keywords[lang]:
+                writer.writerow({
+                    f'keyword_{lang}': keyword,
+                })
+        with open(f"datasets_to_keywords_{lang}.csv", "w") as csvfile:
+            writer = DictWriter(csvfile, fieldnames=['dataset_name', f'keyword_{lang}'])
+            writer.writeheader()
+            for item in datasets_with_keywords[lang]:
+                for keyword in item[1]:
+                    writer.writerow({
+                        'dataset_name': item[0],
+                        f'keyword_{lang}': keyword,
+                    })
