@@ -28,10 +28,10 @@ fieldnames_political_levels = [
 ]
 
 
-def organizations_writer(ogdremote):
+def organizations_writer(ogdremote, output_dir):
     organizations = ogdremote.action.organization_list()
     organizations_complete = ogdremote.action.organization_list(all_fields=True, organizations=organizations)
-    with open('organizations.csv', "w") as csvfile:
+    with open(f"{output_dir}/organizations.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_organization)
         writer.writeheader()
         for organization in organizations_complete:
@@ -50,7 +50,7 @@ def organizations_writer(ogdremote):
     return organizations
 
 
-def organization_detail_writer(ogdremote, organizations):
+def organization_detail_writer(ogdremote, organizations, output_dir):
     political_levels = []
     parent_organizations = []
     organization_levels = []
@@ -66,7 +66,7 @@ def organization_detail_writer(ogdremote, organizations):
             for group in organization_groups:
                 parent_organizations.append((organization, group.get('name')))
 
-    with open('organization_to_parent_organization.csv', "w") as csvfile:
+    with open(f"{output_dir}/organization_to_parent_organization.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_organization_to_parent_organization)
         writer.writeheader()
         for organization_pair in parent_organizations:
@@ -74,14 +74,14 @@ def organization_detail_writer(ogdremote, organizations):
                 'organization_name': organization_pair[0],
                 'parent_organization_name': organization_pair[1],
             })
-    with open('political_levels.csv', "w") as csvfile:
+    with open(f"{output_dir}/political_levels.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_political_levels)
         writer.writeheader()
         for political_level in political_levels:
             writer.writerow({
                 'political_level_name': political_level,
             })
-    with open('organization_to_political_level.csv', "w") as csvfile:
+    with open(f"{output_dir}/organization_to_political_level.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_organization_to_political_level)
         writer.writeheader()
         for organization_level_pair in organization_levels:

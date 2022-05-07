@@ -35,7 +35,7 @@ fieldnames_showcases_to_groups = [
 ]
 
 
-def showcase_writer(ogdremote):
+def showcase_writer(ogdremote, output_dir):
     fq = f"dataset_type:showcase"
     result = ogdremote.action.ogdch_showcase_search(fq=fq, rows=100)
     if not result.get('count'):
@@ -71,7 +71,7 @@ def showcase_writer(ogdremote):
             for group_name in group_names:
                 showcases_to_groups.append((showcase_name, group_name))
 
-    with open('showcases.csv', "w") as csvfile:
+    with open(f"{output_dir}/showcases.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_showcase)
         writer.writeheader()
         for showcase in showcases:
@@ -87,7 +87,7 @@ def showcase_writer(ogdremote):
                 'author_email': showcase.get('author_email'),
             })
 
-    with open('showcases_to_datasets.csv', "w") as csvfile:
+    with open(f"{output_dir}/showcases_to_datasets.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_showcase_to_datasets)
         writer.writeheader()
         for showcase in showcases:
@@ -97,7 +97,7 @@ def showcase_writer(ogdremote):
                     'dataset_identifier': dataset_identifier,
                 })
 
-    with open('tags.csv', "w") as csvfile:
+    with open(f"{output_dir}/tags.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_tags)
         writer.writeheader()
         for tag in all_tags:
@@ -105,7 +105,7 @@ def showcase_writer(ogdremote):
                 'tag_name': tag,
             })
 
-    with open('application_types.csv', "w") as csvfile:
+    with open(f"{output_dir}/application_types.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_application_types)
         writer.writeheader()
         for name in application_types:
@@ -113,7 +113,7 @@ def showcase_writer(ogdremote):
                 'application_type_name': name,
             })
 
-    with open('showcases_to_tags.csv', "w") as csvfile:
+    with open(f"{output_dir}/showcases_to_tags.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_showcases_to_tags)
         writer.writeheader()
         for showcase_tag_pair in showcases_to_tags:
@@ -122,7 +122,7 @@ def showcase_writer(ogdremote):
                 'tag_name': showcase_tag_pair[1],
             })
 
-    with open('showcases_to_application_types.csv', "w") as csvfile:
+    with open(f"{output_dir}/showcases_to_application_types.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_showcases_to_application_types)
         writer.writeheader()
         for showcase_application_type_pair in showcases_to_application_types:
@@ -131,7 +131,7 @@ def showcase_writer(ogdremote):
                 'application_type_name': showcase_application_type_pair[1],
             })
 
-    with open('showcases_to_groups.csv', "w") as csvfile:
+    with open(f"{output_dir}/showcases_to_groups.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_showcases_to_groups)
         writer.writeheader()
         for showcase_group_pair in showcases_to_groups:

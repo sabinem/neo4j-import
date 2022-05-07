@@ -13,6 +13,21 @@ fieldnames_distribution = [
     "format",
     "media_type",
     "download_url",
+    "coverage",
+    "title_de",
+    "title_fr",
+    "title_en",
+    "title_it",
+    "description_de",
+    "description_fr",
+    "description_en",
+    "description_it",
+    "byte_size",
+    "issued",
+    "modified",
+    "language",
+    "license",
+    "access_url",
 ]
 
 terms_of_use_mapping = {
@@ -51,12 +66,12 @@ def ogdch_get_format_mapping():
 format_mapping, reverse_format_mapping = ogdch_get_format_mapping()
 
 
-def distribution_writer(datasets):
+def distribution_writer(datasets, output_dir):
     rights_set = set()
     distribution_to_rights = []
     format_set = set()
     distribution_to_format = []
-    with open('distributions.csv', "w") as csvfile:
+    with open(f"{output_dir}/distributions.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_distribution)
         writer.writeheader()
         for dataset in datasets:
@@ -68,6 +83,21 @@ def distribution_writer(datasets):
                         'format': resource.get('format'),
                         'media_type': resource.get('media_type'),
                         'download_url': resource.get('download_url'),
+                        "coverage": resource.get('coverage'),
+                        'title_de': dataset.get('title', {}).get('de'),
+                        'title_fr': dataset.get('title', {}).get('fr'),
+                        'title_en': dataset.get('title', {}).get('en'),
+                        'title_it': dataset.get('title', {}).get('it'),
+                        'description_de': dataset.get('description', {}).get('de'),
+                        'description_fr': dataset.get('description', {}).get('fr'),
+                        'description_en': dataset.get('description', {}).get('en'),
+                        'description_it': dataset.get('description', {}).get('it'),
+                        "byte_size": resource.get('byte_size'),
+                        "issued": resource.get('issued'),
+                        "modified": resource.get('modified'),
+                        "language": resource.get('language'),
+                        "license": resource.get('license'),
+                        "access_url": resource.get('url'),
                     })
                     rights = resource.get('rights')
                     if rights:
@@ -77,7 +107,7 @@ def distribution_writer(datasets):
                     if format:
                         format_set.add(format)
                         distribution_to_format.append((distribution_id, format))
-    with open('rights.csv', "w") as csvfile:
+    with open(f"{output_dir}/rights.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=['term', 'right'])
         writer.writeheader()
         for item in rights_set:
@@ -85,14 +115,14 @@ def distribution_writer(datasets):
                 'term': terms_of_use_mapping.get(item),
                 'right': item,
             })
-    with open('formats.csv', "w") as csvfile:
+    with open(f"{output_dir}/formats.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=['format'])
         writer.writeheader()
         for item in format_set:
             writer.writerow({
                 'format': item,
             })
-    with open('distributions_to_rights.csv', "w") as csvfile:
+    with open(f"{output_dir}/distributions_to_rights.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=['distribution_id', 'term'])
         writer.writeheader()
         for item in distribution_to_rights:
@@ -100,7 +130,7 @@ def distribution_writer(datasets):
                 'distribution_id': item[0],
                 'term': terms_of_use_mapping.get(item[1]),
             })
-    with open('distributions_to_formats.csv', "w") as csvfile:
+    with open(f"{output_dir}/distributions_to_formats.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=['distribution_id', 'format'])
         writer.writeheader()
         for item in distribution_to_format:

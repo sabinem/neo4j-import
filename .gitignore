@@ -3,3 +3,5 @@
 p3venv/
 *.pyc
 __pycache__/
+data/
+.env

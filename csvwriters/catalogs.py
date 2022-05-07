@@ -9,13 +9,13 @@ fieldnames_catalog = [
 ]
 
 
-def catalog_writer(ogdremote):
+def catalog_writer(ogdremote, output_dir):
     fq = "dataset_type:harvest"
     result = ogdremote.action.package_search(fq=fq, rows=100)
     if not result.get('count'):
         return []
     harvesters = result.get('results')
-    with open('catalogs.csv', "w") as csvfile:
+    with open(f"{output_dir}/catalogs.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_catalog)
         writer.writeheader()
         for harvester in harvesters:

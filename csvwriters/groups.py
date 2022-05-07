@@ -9,10 +9,10 @@ fieldnames_group = [
 ]
 
 
-def group_writer(ogdremote):
+def group_writer(ogdremote, output_dir):
     groups = ogdremote.action.group_list()
     groups_complete = ogdremote.action.group_list(all_fields=True)
-    with open('groups.csv', "w") as csvfile:
+    with open(f"{output_dir}/groups.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_group)
         writer.writeheader()
         for group in groups_complete:

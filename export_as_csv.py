@@ -9,25 +9,31 @@ import csvwriters.datasets as dw
 import csvwriters.catalogs as cw
 import csvwriters.distributions as distw
 
+from dotenv import dotenv_values, load_dotenv
+
+load_dotenv()
+config = dotenv_values(".env")
+output_dir = config.get('OUTPUT_DIR')
+
 log = logging.getLogger(__name__)
 
 def process(ogdremote):
     datasets = []
-    organizations = ow.organizations_writer(ogdremote)
-    ow.organization_detail_writer(ogdremote, organizations)
-    gw.group_writer(ogdremote)
-    cw.catalog_writer(ogdremote)
-    sw.showcase_writer(ogdremote)
+    organizations = ow.organizations_writer(ogdremote, output_dir)
+    ow.organization_detail_writer(ogdremote, organizations, output_dir)
+    gw.group_writer(ogdremote, output_dir)
+    cw.catalog_writer(ogdremote, output_dir)
+    sw.showcase_writer(ogdremote, output_dir)
     for organization in organizations:
         organization_datasets = _search_packages_for_organization(ogdremote, organization)
         datasets.extend(organization_datasets)
-    dw.dataset_writer(datasets)
-    dw.dataset_to_datasets_writer(datasets)
-    dw.dataset_to_group_writer(datasets)
-    dw.dataset_to_organization_writer(datasets)
-    distw.distribution_writer(datasets)
-    dw.dataset_to_distribution_writer(datasets)
-    dw.dataset_to_keyword_writer(datasets)
+    dw.dataset_writer(datasets, output_dir)
+    dw.dataset_to_datasets_writer(datasets, output_dir)
+    dw.dataset_to_group_writer(datasets, output_dir)
+    dw.dataset_to_organization_writer(datasets, output_dir)
+    distw.distribution_writer(datasets, output_dir)
+    dw.dataset_to_distribution_writer(datasets, output_dir)
+    dw.dataset_to_keyword_writer(datasets, output_dir)
 
 
 def _search_packages_for_organization(ogdremote, organization):
