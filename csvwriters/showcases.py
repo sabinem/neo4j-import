@@ -1,4 +1,7 @@
+import logging
 from csv import DictWriter
+
+log = logging.getLogger(__name__)
 
 fieldnames_showcase = [
     'showcase_name',
@@ -70,9 +73,11 @@ def showcase_writer(ogdremote, output_dir):
         if group_names:
             for group_name in group_names:
                 showcases_to_groups.append((showcase_name, group_name))
-
-    with open(f"{output_dir}/showcases.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_showcase)
+    filename = f"{output_dir}/showcases.csv"
+    fieldnames = fieldnames_showcase
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for showcase in showcases:
             writer.writerow({
@@ -86,9 +91,14 @@ def showcase_writer(ogdremote, output_dir):
                 'author': showcase.get('author'),
                 'author_email': showcase.get('author_email'),
             })
-
-    with open(f"{output_dir}/showcases_to_datasets.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_showcase_to_datasets)
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    filename = f"{output_dir}/showcases_to_datasets.csv"
+    fieldnames = fieldnames_showcase_to_datasets
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for showcase in showcases:
             for dataset_identifier in showcase['datasets']:
@@ -96,48 +106,76 @@ def showcase_writer(ogdremote, output_dir):
                     'showcase_name': showcase.get('name'),
                     'dataset_identifier': dataset_identifier,
                 })
-
-    with open(f"{output_dir}/tags.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_tags)
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    filename = f"{output_dir}/tags.csv"
+    fieldnames = fieldnames_tags
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for tag in all_tags:
             writer.writerow({
                 'tag_name': tag,
             })
-
-    with open(f"{output_dir}/application_types.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_application_types)
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    filename = f"{output_dir}/application_types.csv"
+    fieldnames = fieldnames_application_types
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for name in application_types:
             writer.writerow({
                 'application_type_name': name,
             })
-
-    with open(f"{output_dir}/showcases_to_tags.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_showcases_to_tags)
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    filename = f"{output_dir}/showcases_to_tags.csv"
+    fieldnames = fieldnames_showcases_to_tags
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for showcase_tag_pair in showcases_to_tags:
             writer.writerow({
                 'showcase_name': showcase_tag_pair[0],
                 'tag_name': showcase_tag_pair[1],
             })
-
-    with open(f"{output_dir}/showcases_to_application_types.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_showcases_to_application_types)
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    filename = f"{output_dir}/showcases_to_application_types.csv"
+    fieldnames = fieldnames_showcases_to_application_types
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for showcase_application_type_pair in showcases_to_application_types:
             writer.writerow({
                 'showcase_name': showcase_application_type_pair[0],
                 'application_type_name': showcase_application_type_pair[1],
             })
-
-    with open(f"{output_dir}/showcases_to_groups.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_showcases_to_groups)
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    filename = f"{output_dir}/showcases_to_groups.csv"
+    fieldnames = fieldnames_showcases_to_groups
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for showcase_group_pair in showcases_to_groups:
             writer.writerow({
                 'showcase_name': showcase_group_pair[0],
                 'group_name': showcase_group_pair[1],
             })
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
 
     return showcases

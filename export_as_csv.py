@@ -17,6 +17,7 @@ output_dir = config.get('OUTPUT_DIR')
 
 log = logging.getLogger(__name__)
 
+
 def process(ogdremote):
     datasets = []
     organizations = ow.organizations_writer(ogdremote, output_dir)

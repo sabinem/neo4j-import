@@ -1,4 +1,8 @@
+import logging
+import json
 from csv import DictWriter
+
+log = logging.getLogger(__name__)
 
 fieldnames_dataset = [
     "dataset_identifier",
@@ -55,8 +59,11 @@ fieldnames_dataset_to_organization = [
 
 
 def dataset_writer(datasets, output_dir):
+    fieldnames = fieldnames_dataset
+    filename = f"{output_dir}/datasets.csv"
+    count = 0
     with open(f"{output_dir}/datasets.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_dataset)
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for dataset in datasets:
             writer.writerow({
@@ -81,11 +88,17 @@ def dataset_writer(datasets, output_dir):
                 'language': json.dumps(dataset.get('language')),
                 'accrual_periodictity': dataset.get('accrual_periodicity'),
             })
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
 
 
 def dataset_to_group_writer(datasets, output_dir):
-    with open(f"{output_dir}/datasets_to_groups.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_dataset_to_groups)
+    fieldnames = fieldnames_dataset_to_groups
+    filename = f"{output_dir}/datasets_to_groups.csv"
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for dataset in datasets:
             for group in dataset.get('groups'):
@@ -93,9 +106,15 @@ def dataset_to_group_writer(datasets, output_dir):
                     'group_name': group.get('name'),
                     'dataset_identifier': dataset.get('identifier'),
                 })
+                count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
 
 
 def dataset_to_distribution_writer(datasets, output_dir):
+    fieldnames = fieldnames_dataset_to_distibutions
+    filename = f"{output_dir}/datasets_to_distributions.csv"
+    count = 0
     with open(f"{output_dir}/datasets_to_distributions.csv", "w") as csvfile:
         writer = DictWriter(csvfile, fieldnames=fieldnames_dataset_to_distibutions)
         writer.writeheader()
@@ -106,11 +125,17 @@ def dataset_to_distribution_writer(datasets, output_dir):
                         'dataset_identifier': dataset.get('identifier'),
                         'distribution_id': resource.get('id'),
                     })
+                    count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
 
 
 def dataset_to_datasets_writer(datasets, output_dir):
-    with open(f"{output_dir}/dataset_to_datasets.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_dataset_to_datasets)
+    fieldnames = fieldnames_dataset_to_datasets
+    filename = f"{output_dir}/dataset_to_datasets.csv"
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for dataset in datasets:
             if dataset.get('see_alsos'):
@@ -120,11 +145,17 @@ def dataset_to_datasets_writer(datasets, output_dir):
                         'dataset_identifier': dataset.get('identifier'),
                         'see_also_identifier': item,
                     })
+                    count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
 
 
 def dataset_to_organization_writer(datasets, output_dir):
-    with open(f"{output_dir}/datasets_to_organizations.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_dataset_to_organization)
+    fieldnames = fieldnames_dataset_to_organization
+    filename = f"{output_dir}/datasets_to_organizations.csv"
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for dataset in datasets:
             organization = dataset.get('organization')
@@ -132,6 +163,9 @@ def dataset_to_organization_writer(datasets, output_dir):
                 'organization_name': organization.get('name'),
                 'dataset_identifier': dataset.get('identifier'),
             })
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
 
 
 def dataset_to_keyword_writer(datasets, output_dir):
@@ -148,15 +182,25 @@ def dataset_to_keyword_writer(datasets, output_dir):
                 for keyword in dataset_keywords.get(lang):
                     keywords[lang].add(keyword)
     for lang in languages:
-        with open(f"{output_dir}/keywords_{lang}.csv", "w") as csvfile:
-            writer = DictWriter(csvfile, fieldnames=[f'keyword_{lang}'])
+        filename = f"{output_dir}/keywords_{lang}.csv"
+        fieldnames = [f'keyword_{lang}']
+        count = 0
+        with open(filename, "w") as csvfile:
+            writer = DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             for keyword in keywords[lang]:
                 writer.writerow({
                     f'keyword_{lang}': keyword,
                 })
-        with open(f"{output_dir}/datasets_to_keywords_{lang}.csv", "w") as csvfile:
-            writer = DictWriter(csvfile, fieldnames=['dataset_identifier', f'keyword_{lang}'])
+                count += 1
+        log.info(f"{count} items were written to {filename}")
+        log.info(f"- fieldnames: {fieldnames}")
+        fieldnames = ['dataset_identifier', f'keyword_{lang}']
+        filename = f"{output_dir}/datasets_to_keywords_{lang}.csv"
+        count = 0
+        with open(filename, "w") as csvfile:
+            fieldnames = ['dataset_identifier', f'keyword_{lang}']
+            writer = DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             for item in datasets_with_keywords[lang]:
                 for keyword in item[1]:
@@ -164,3 +208,6 @@ def dataset_to_keyword_writer(datasets, output_dir):
                         'dataset_identifier': item[0],
                         f'keyword_{lang}': keyword,
                     })
+                count += 1
+        log.info(f"{count} items were written to {filename}")
+        log.info(f"- fieldnames: {fieldnames}")

@@ -1,4 +1,7 @@
+import logging
 from csv import DictWriter
+
+log = logging.getLogger(__name__)
 
 fieldnames_organization = [
     'organization_name',
@@ -29,10 +32,13 @@ fieldnames_political_levels = [
 
 
 def organizations_writer(ogdremote, output_dir):
+    filename = f"{output_dir}/organizations.csv"
+    fieldnames = fieldnames_organization
+    count = 0
     organizations = ogdremote.action.organization_list()
     organizations_complete = ogdremote.action.organization_list(all_fields=True, organizations=organizations)
-    with open(f"{output_dir}/organizations.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_organization)
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for organization in organizations_complete:
             writer.writerow({
@@ -47,6 +53,9 @@ def organizations_writer(ogdremote, output_dir):
                 'description_it': organization.get('description').get('it'),
                 'url': organization.get('url'),
             })
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
     return organizations
 
 
@@ -65,27 +74,44 @@ def organization_detail_writer(ogdremote, organizations, output_dir):
         if organization_groups:
             for group in organization_groups:
                 parent_organizations.append((organization, group.get('name')))
-
-    with open(f"{output_dir}/organization_to_parent_organization.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_organization_to_parent_organization)
+    filename = f"{output_dir}/organization_to_parent_organization.csv"
+    fieldnames = fieldnames_organization_to_parent_organization
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for organization_pair in parent_organizations:
             writer.writerow({
                 'organization_name': organization_pair[0],
                 'parent_organization_name': organization_pair[1],
             })
-    with open(f"{output_dir}/political_levels.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_political_levels)
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    filename = f"{output_dir}/political_levels.csv"
+    fieldnames = fieldnames_political_levels
+    count = 0
+    with open(filename, "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for political_level in political_levels:
             writer.writerow({
                 'political_level_name': political_level,
             })
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    filename = f"{output_dir}/organization_to_political_level.csv"
+    fieldnames = fieldnames_organization_to_political_level
+    count = 0
     with open(f"{output_dir}/organization_to_political_level.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_organization_to_political_level)
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for organization_level_pair in organization_levels:
             writer.writerow({
                 'organization_name': organization_level_pair[0],
                 'political_level_name': organization_level_pair[1],
             })
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")

@@ -1,7 +1,10 @@
+import logging
 from csv import DictWriter
 import yaml
 import os
 from urllib.parse import urlparse
+
+log = logging.getLogger(__name__)
 
 __location__ = os.path.realpath(os.path.join(
     os.getcwd(),
@@ -71,8 +74,11 @@ def distribution_writer(datasets, output_dir):
     distribution_to_rights = []
     format_set = set()
     distribution_to_format = []
-    with open(f"{output_dir}/distributions.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=fieldnames_distribution)
+    fieldnames = fieldnames_distribution
+    filename = f"{output_dir}/distributions.csv"
+    count = 0
+    with open(filename , "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for dataset in datasets:
             if dataset.get('resources'):
@@ -99,6 +105,7 @@ def distribution_writer(datasets, output_dir):
                         "license": resource.get('license'),
                         "access_url": resource.get('url'),
                     })
+                    count += 1
                     rights = resource.get('rights')
                     if rights:
                         rights_set.add(rights)
@@ -107,37 +114,62 @@ def distribution_writer(datasets, output_dir):
                     if format:
                         format_set.add(format)
                         distribution_to_format.append((distribution_id, format))
-    with open(f"{output_dir}/rights.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=['term', 'right'])
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    fieldnames = fieldnames=['right']
+    filename = f"{output_dir}/rights.csv"
+    count = 0
+    with open(filename , "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for item in rights_set:
             writer.writerow({
-                'term': terms_of_use_mapping.get(item),
                 'right': item,
             })
-    with open(f"{output_dir}/formats.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=['format'])
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    fieldnames = fieldnames=['format']
+    filename = f"{output_dir}/formats.csv"
+    count = 0
+    with open(filename , "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for item in format_set:
             writer.writerow({
                 'format': item,
             })
-    with open(f"{output_dir}/distributions_to_rights.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=['distribution_id', 'term'])
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    fieldnames = fieldnames=['distribution_id', 'right']
+    filename = f"{output_dir}/distributions_to_rights.csv"
+    count = 0
+    with open(filename , "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for item in distribution_to_rights:
             writer.writerow({
                 'distribution_id': item[0],
-                'term': terms_of_use_mapping.get(item[1]),
+                'right': item[1],
             })
-    with open(f"{output_dir}/distributions_to_formats.csv", "w") as csvfile:
-        writer = DictWriter(csvfile, fieldnames=['distribution_id', 'format'])
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
+    fieldnames = ['distribution_id', 'format']
+    filename = f"{output_dir}/distributions_to_formats.csv"
+    count = 0
+    with open(filename , "w") as csvfile:
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for item in distribution_to_format:
             writer.writerow({
                 'distribution_id': item[0],
                 'format': item[1],
             })
+            count += 1
+    log.info(f"{count} items were written to {filename}")
+    log.info(f"- fieldnames: {fieldnames}")
 
 
 def prepare_resource_format(resource):
