@@ -2,3 +2,4 @@ ckanapi
 click
 python-dateutil
 python-dotenv
+neo4j
