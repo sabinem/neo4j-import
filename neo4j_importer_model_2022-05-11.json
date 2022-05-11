@@ -1,0 +1,2334 @@
+{
+  "version": "0.1.2-beta.2",
+  "graph": {
+    "nodes": [
+      {
+        "id": "n0",
+        "position": {
+          "x": -163.3583606375473,
+          "y": 63.91026069721468
+        },
+        "caption": "Catalog"
+      },
+      {
+        "id": "n1",
+        "position": {
+          "x": 17.760949554387196,
+          "y": 326.10282553463935
+        },
+        "caption": "Dataset"
+      },
+      {
+        "id": "n2",
+        "position": {
+          "x": 872.9845100748895,
+          "y": 276.0689999283401
+        },
+        "caption": "Showcase"
+      },
+      {
+        "id": "n3",
+        "position": {
+          "x": 0,
+          "y": 530.7731113736951
+        },
+        "caption": "Distribution"
+      },
+      {
+        "id": "n4",
+        "position": {
+          "x": 640.4261122609578,
+          "y": 63.91026069721468
+        },
+        "caption": "Group"
+      },
+      {
+        "id": "n5",
+        "position": {
+          "x": -208.04346202620113,
+          "y": 276.0689999283401
+        },
+        "caption": "Organization"
+      },
+      {
+        "id": "n6",
+        "position": {
+          "x": 987.9217632895266,
+          "y": 120.6372366981542
+        },
+        "caption": "Tag"
+      },
+      {
+        "id": "n7",
+        "position": {
+          "x": 872.9845100748895,
+          "y": 120.6372366981542
+        },
+        "caption": "Applicationtype"
+      },
+      {
+        "id": "n9",
+        "position": {
+          "x": -326.7167212750946,
+          "y": 142.8125894715007
+        },
+        "caption": "Level"
+      },
+      {
+        "id": "n10",
+        "position": {
+          "x": -103.30116717550186,
+          "y": 741.5462227473902
+        },
+        "caption": "Format"
+      },
+      {
+        "id": "n11",
+        "position": {
+          "x": 82.92692480263327,
+          "y": 741.5462227473902
+        },
+        "caption": "TermsOfUse"
+      },
+      {
+        "id": "n12",
+        "position": {
+          "x": 35.52189910877439,
+          "y": 63.91026069721468
+        },
+        "caption": "KeywordEn"
+      },
+      {
+        "id": "n13",
+        "position": {
+          "x": 285.2826901779496,
+          "y": 63.91026069721468
+        },
+        "caption": "KeywordFr"
+      },
+      {
+        "id": "n14",
+        "position": {
+          "x": 160.40229464336198,
+          "y": 63.91026069721468
+        },
+        "caption": "KeywordDe"
+      },
+      {
+        "id": "n15",
+        "position": {
+          "x": 410.16308571253717,
+          "y": 63.91026069721468
+        },
+        "caption": "KeywordIt"
+      }
+    ],
+    "relationships": [
+      {
+        "id": "n1",
+        "type": "HAS_DISTRIBUTION",
+        "fromId": "n1",
+        "toId": "n3"
+      },
+      {
+        "id": "n2",
+        "type": "BELONGS_TO",
+        "fromId": "n1",
+        "toId": "n5"
+      },
+      {
+        "id": "n3",
+        "type": "HAS_THEME",
+        "fromId": "n1",
+        "toId": "n4"
+      },
+      {
+        "id": "n4",
+        "type": "USES_DATASET",
+        "fromId": "n2",
+        "toId": "n1"
+      },
+      {
+        "id": "n5",
+        "type": "SEE_ALSO",
+        "fromId": "n1",
+        "toId": "n1"
+      },
+      {
+        "id": "n6",
+        "type": "HAS_TAG",
+        "fromId": "n2",
+        "toId": "n6"
+      },
+      {
+        "id": "n7",
+        "type": "HAS_APPLICATION_TYPE",
+        "fromId": "n2",
+        "toId": "n7"
+      },
+      {
+        "id": "n8",
+        "type": "HAS_GROUP",
+        "fromId": "n2",
+        "toId": "n4"
+      },
+      {
+        "id": "n9",
+        "type": "HAS_LEVEL",
+        "fromId": "n5",
+        "toId": "n9"
+      },
+      {
+        "id": "n10",
+        "type": "HAS_FORMAT",
+        "fromId": "n3",
+        "toId": "n10"
+      },
+      {
+        "id": "n11",
+        "type": "HAS_RIGHTS",
+        "fromId": "n3",
+        "toId": "n11"
+      },
+      {
+        "id": "n15",
+        "type": "HAS_KEYWORD_EN",
+        "fromId": "n1",
+        "toId": "n12"
+      },
+      {
+        "id": "n16",
+        "type": "HAS_KEYWORD_DE",
+        "fromId": "n1",
+        "toId": "n14"
+      },
+      {
+        "id": "n17",
+        "type": "HAS_KEYWORD_FR",
+        "fromId": "n1",
+        "toId": "n13"
+      },
+      {
+        "id": "n18",
+        "type": "HAS_KEYWORD_IT",
+        "fromId": "n1",
+        "toId": "n15"
+      },
+      {
+        "id": "n19",
+        "type": "HAS_PARENT",
+        "fromId": "n5",
+        "toId": "n5"
+      }
+    ]
+  },
+  "dataModel": {
+    "fileModel": {
+      "fileSchemas": {
+        "organizations.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "organization_name",
+              "type": "string",
+              "sample": "awel-kanton-zuerich",
+              "include": true
+            },
+            {
+              "name": "title_de",
+              "type": "string",
+              "sample": "Amt für Abfall, Wasser, Energie und Luft Kanton Zürich",
+              "include": true
+            },
+            {
+              "name": "title_fr",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "title_en",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "title_it",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_de",
+              "type": "string",
+              "sample": "Das Amt für Abfall, Wasser, Energie und Luft (AWEL) des Kantons Zürich hat den Auftrag, der Bevölkerung im Kanton Zürich eine gesunde, sichere und attraktive Umwelt zu bieten. Zu den Themen Abfall, Wasser, Energie und Luft stellt das AWEL Fachleuten und Interessierten Informationen zur Verfügung.",
+              "include": true
+            },
+            {
+              "name": "description_fr",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_en",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_it",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "sample": "",
+              "include": true
+            }
+          ]
+        },
+        "groups.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "group_name",
+              "type": "string",
+              "sample": "administration",
+              "include": true
+            },
+            {
+              "name": "title_de",
+              "type": "string",
+              "sample": "Verwaltung",
+              "include": true
+            },
+            {
+              "name": "title_fr",
+              "type": "string",
+              "sample": "Administration",
+              "include": true
+            },
+            {
+              "name": "title_en",
+              "type": "string",
+              "sample": "Administration",
+              "include": true
+            },
+            {
+              "name": "title_it",
+              "type": "string",
+              "sample": "Amministrazione",
+              "include": true
+            }
+          ]
+        },
+        "datasets_to_distributions.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "736@awel-kanton-zuerich",
+              "include": true
+            },
+            {
+              "name": "distribution_id",
+              "type": "string",
+              "sample": "3c1c3918-3390-4281-a20f-496d98108573",
+              "include": true
+            }
+          ]
+        },
+        "distributions.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "distribution_id",
+              "type": "string",
+              "sample": "3c1c3918-3390-4281-a20f-496d98108573",
+              "include": true
+            },
+            {
+              "name": "format",
+              "type": "string",
+              "sample": "CSV",
+              "include": true
+            },
+            {
+              "name": "media_type",
+              "type": "string",
+              "sample": "text/csv",
+              "include": true
+            },
+            {
+              "name": "download_url",
+              "type": "string",
+              "sample": "https://www.web.statistik.zh.ch/ogd/daten/ressourcen/KTZH_00000736_00001881.csv",
+              "include": true
+            },
+            {
+              "name": "coverage",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "title_de",
+              "type": "string",
+              "sample": "Kiesstatistik des Kantons Zürich ab 1990",
+              "include": true
+            },
+            {
+              "name": "title_fr",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "title_en",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "title_it",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_de",
+              "type": "string",
+              "sample": "Jährlich erhobener kantonaler Kiesabbau und Aushub-Einbau mit Restkubatur Kiesabbau, Bahntransportanteil und offenen Flächen.",
+              "include": true
+            },
+            {
+              "name": "description_fr",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_en",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_it",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "byte_size",
+              "type": "string",
+              "sample": "9785",
+              "include": true
+            },
+            {
+              "name": "issued",
+              "type": "string",
+              "sample": "2021-09-16T00:00:00",
+              "include": true
+            },
+            {
+              "name": "modified",
+              "type": "string",
+              "sample": "2022-04-26T00:00:00",
+              "include": true
+            },
+            {
+              "name": "language",
+              "type": "string",
+              "sample": "['de']",
+              "include": true
+            },
+            {
+              "name": "license",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "access_url",
+              "type": "string",
+              "sample": "https://www.web.statistik.zh.ch/ogd/daten/ressourcen/KTZH_00000736_00001881.csv",
+              "include": true
+            }
+          ]
+        },
+        "datasets_to_organizations.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "organization_name",
+              "type": "string",
+              "sample": "awel-kanton-zuerich",
+              "include": true
+            },
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "736@awel-kanton-zuerich",
+              "include": true
+            }
+          ]
+        },
+        "datasets_to_groups.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "group_name",
+              "type": "string",
+              "sample": "construction",
+              "include": true
+            },
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "736@awel-kanton-zuerich",
+              "include": true
+            }
+          ]
+        },
+        "datasets.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "736@awel-kanton-zuerich",
+              "include": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "sample": "kiesstatistik-des-kantons-zurich-ab-1990",
+              "include": true
+            },
+            {
+              "name": "title_de",
+              "type": "string",
+              "sample": "Kiesstatistik des Kantons Zürich ab 1990",
+              "include": true
+            },
+            {
+              "name": "title_fr",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "title_en",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "title_it",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_de",
+              "type": "string",
+              "sample": "Jährlich erhobener kantonaler Kiesabbau und Aushub-Einbau mit Restkubatur Kiesabbau, Bahntransportanteil und offenen Flächen.",
+              "include": true
+            },
+            {
+              "name": "description_fr",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_en",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "description_it",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "frequency",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "access_url",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "issued",
+              "type": "string",
+              "sample": "2021-09-27T00:00:00",
+              "include": true
+            },
+            {
+              "name": "modified",
+              "type": "string",
+              "sample": "2022-04-27T00:00:00",
+              "include": true
+            },
+            {
+              "name": "landing_page",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "spatial",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "temporal",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "relation",
+              "type": "string",
+              "sample": "",
+              "include": true
+            },
+            {
+              "name": "publisher",
+              "type": "string",
+              "sample": "{\"url\": \"https://opendata.swiss/organization/awel-kanton-zuerich\", \"name\": \"Amt f\\u00fcr Abfall, Wasser, Energie und Luft des Kantons Z\\u00fcrich\"}",
+              "include": true
+            },
+            {
+              "name": "contact_points",
+              "type": "string",
+              "sample": "[{\"email\": \"info.aw@bd.zh.ch\", \"name\": \"Amt f\\u00fcr Abfall, Wasser, Energie und Luft des Kantons Z\\u00fcrich, Abteilung Abfallwirtschaft und Betriebe - Sektion Abfallwirtschaft\"}]",
+              "include": true
+            },
+            {
+              "name": "language",
+              "type": "string",
+              "sample": "[\"de\"]",
+              "include": true
+            },
+            {
+              "name": "accrual_periodictity",
+              "type": "string",
+              "sample": "http://publications.europa.eu/resource/authority/frequency/ANNUAL",
+              "include": true
+            }
+          ]
+        },
+        "catalogs.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "source_id",
+              "type": "string",
+              "sample": "47bf1425-f615-4803-838a-f9b4c79a3cbb",
+              "include": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "sample": "bfs-dcat-harvester",
+              "include": true
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "sample": "BFS – DCAT Harvester",
+              "include": true
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "sample": "https://dam-api.bfs.admin.ch/hub/api/ogd/harvest?skip=100&limit=100",
+              "include": true
+            },
+            {
+              "name": "source_type",
+              "type": "string",
+              "sample": "dcat_ch_rdf",
+              "include": true
+            }
+          ]
+        },
+        "showcases.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "showcase_name",
+              "type": "string",
+              "sample": "stromlandschaft-schweiz1",
+              "include": true
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "sample": "Stromlandschaft Schweiz",
+              "include": true
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "sample": "https://stromlandschaft.mynewenergy.ch/ ",
+              "include": true
+            },
+            {
+              "name": "notes",
+              "type": "string",
+              "sample": "Das Projekt «Stromlandschaft Schweiz» wurde vom WWF Schweiz initiiert, gemeinsam mit myNewEnergy und EnergieSchweiz umgesetzt und erstmals 2017 lanciert. Die neuste Ausgabe der Stromlandschaft 2020-2022 erscheint nun in etwas modifizierter Form: Neu werden nur noch EVU im grünen Bereich angezeigt, die einen massgeblichen Anteil an neuen erneuerbaren Energien wie Solar-, Wind- oder Energie aus Biomasse enthalten. Damit wollen wir aufzeigen, wo die Energiewende auf Kurs ist und wo die Umstellung auf die nachhaltige Stromproduktion an Tempo zulegen muss.\r\n\r\nSollten Sie Fragen zum Projekt haben, schreiben Sie eine Mail an [kontakt@mynewenergy.ch](mailto:kontakt@mynewenergy.ch).",
+              "include": true
+            },
+            {
+              "name": "image_url",
+              "type": "string",
+              "sample": "2022-04-07-123129.996301stromlandschaft.PNG",
+              "include": true
+            },
+            {
+              "name": "showcase_notes_formatted",
+              "type": "string",
+              "sample": "<p>Das Projekt «Stromlandschaft Schweiz» wurde vom WWF Schweiz initiiert, gemeinsam mit myNewEnergy und EnergieSchweiz umgesetzt und erstmals 2017 lanciert. Die neuste Ausgabe der Stromlandschaft 2020-2022 erscheint nun in etwas modifizierter Form: Neu werden nur noch EVU im grünen Bereich angezeigt, die einen massgeblichen Anteil an neuen erneuerbaren Energien wie Solar-, Wind- oder Energie aus Biomasse enthalten. Damit wollen wir aufzeigen, wo die Energiewende auf Kurs ist und wo die Umstellung auf die nachhaltige Stromproduktion an Tempo zulegen muss.</p>\n<p>Sollten Sie Fragen zum Projekt haben, schreiben Sie eine Mail an <a href=\"mailto:kontakt@mynewenergy.ch\">kontakt@mynewenergy.ch</a>.</p>",
+              "include": true
+            },
+            {
+              "name": "image_display_url",
+              "type": "string",
+              "sample": "https://ckan.opendata.swiss/uploads/showcase/2022-04-07-123129.996301stromlandschaft.PNG",
+              "include": true
+            },
+            {
+              "name": "author",
+              "type": "string",
+              "sample": "myNewEnergy",
+              "include": true
+            },
+            {
+              "name": "author_email",
+              "type": "string",
+              "sample": "kontakt@mynewenergy.ch",
+              "include": true
+            }
+          ]
+        },
+        "dataset_to_datasets.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "736@awel-kanton-zuerich",
+              "include": true
+            },
+            {
+              "name": "see_also_identifier",
+              "type": "string",
+              "sample": "739@awel-kanton-zuerich",
+              "include": true
+            }
+          ]
+        },
+        "showcases_to_datasets.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "showcase_name",
+              "type": "string",
+              "sample": "stromlandschaft-schweiz1",
+              "include": true
+            },
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "ogd85@bundesamt-fur-energie-bfe",
+              "include": true
+            }
+          ]
+        },
+        "organization_to_political_level.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "organization_name",
+              "type": "string",
+              "sample": "awel-kanton-zuerich",
+              "include": true
+            },
+            {
+              "name": "political_level_name",
+              "type": "string",
+              "sample": "canton",
+              "include": true
+            }
+          ]
+        },
+        "political_levels.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "political_level_name",
+              "type": "string",
+              "sample": "canton",
+              "include": true
+            }
+          ]
+        },
+        "organization_to_parent_organization.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "organization_name",
+              "type": "string",
+              "sample": "awel-kanton-zuerich",
+              "include": true
+            },
+            {
+              "name": "parent_organization_name",
+              "type": "string",
+              "sample": "kanton-zuerich",
+              "include": true
+            }
+          ]
+        },
+        "showcases_to_application_types.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "showcase_name",
+              "type": "string",
+              "sample": "stromlandschaft-schweiz1",
+              "include": true
+            },
+            {
+              "name": "application_type_name",
+              "type": "string",
+              "sample": "application",
+              "include": true
+            }
+          ]
+        },
+        "showcases_to_tags.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "showcase_name",
+              "type": "string",
+              "sample": "stromlandschaft-schweiz1",
+              "include": true
+            },
+            {
+              "name": "tag_name",
+              "type": "string",
+              "sample": "BFE",
+              "include": true
+            }
+          ]
+        },
+        "application_types.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "application_type_name",
+              "type": "string",
+              "sample": "application",
+              "include": true
+            }
+          ]
+        },
+        "tags.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "tag_name",
+              "type": "string",
+              "sample": "BFE",
+              "include": true
+            }
+          ]
+        },
+        "showcases_to_groups.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "showcase_name",
+              "type": "string",
+              "sample": "stromlandschaft-schweiz1",
+              "include": true
+            },
+            {
+              "name": "group_name",
+              "type": "string",
+              "sample": "energy",
+              "include": true
+            }
+          ]
+        },
+        "distributions_to_rights.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "distribution_id",
+              "type": "string",
+              "sample": "3c1c3918-3390-4281-a20f-496d98108573",
+              "include": true
+            },
+            {
+              "name": "right",
+              "type": "string",
+              "sample": "NonCommercialAllowed-CommercialAllowed-ReferenceRequired",
+              "include": true
+            }
+          ]
+        },
+        "formats.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "format",
+              "type": "string",
+              "sample": "XLS",
+              "include": true
+            }
+          ]
+        },
+        "rights.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "right",
+              "type": "string",
+              "sample": "NonCommercialAllowed-CommercialWithPermission-ReferenceRequired",
+              "include": true
+            }
+          ]
+        },
+        "distributions_to_formats.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "distribution_id",
+              "type": "string",
+              "sample": "3c1c3918-3390-4281-a20f-496d98108573",
+              "include": true
+            },
+            {
+              "name": "format",
+              "type": "string",
+              "sample": "CSV",
+              "include": true
+            }
+          ]
+        },
+        "keywords2.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "keyword:ID",
+              "type": "string",
+              "sample": "import",
+              "include": true
+            },
+            {
+              "name": ":LABEL",
+              "type": "string",
+              "sample": "KeywordDe",
+              "include": true
+            }
+          ]
+        },
+        "keywords_de.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "keyword_de",
+              "type": "string",
+              "sample": "steuern",
+              "include": true
+            }
+          ]
+        },
+        "datasets_to_keywords_en.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "04104763-8c39-4a6f-a488-be34138d304a@amt-geoinformation-kanton-schaffhausen",
+              "include": true
+            },
+            {
+              "name": "keyword_en",
+              "type": "string",
+              "sample": "av",
+              "include": true
+            }
+          ]
+        },
+        "keywords_en.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "keyword_en",
+              "type": "string",
+              "sample": "goods-traffic",
+              "include": true
+            }
+          ]
+        },
+        "datasets_to_keywords_it.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "04104763-8c39-4a6f-a488-be34138d304a@amt-geoinformation-kanton-schaffhausen",
+              "include": true
+            },
+            {
+              "name": "keyword_it",
+              "type": "string",
+              "sample": "av",
+              "include": true
+            }
+          ]
+        },
+        "keywords_it.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "keyword_it",
+              "type": "string",
+              "sample": "consiglio-federale",
+              "include": true
+            }
+          ]
+        },
+        "datasets_to_keywords_fr.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "41b2d4c8-4274-4136-b1bb-0cfebd5b6856@amt-fuer-geoinformation-des-kantons-bern",
+              "include": true
+            },
+            {
+              "name": "keyword_fr",
+              "type": "string",
+              "sample": "sauvegarde-de-lenvironnement",
+              "include": true
+            }
+          ]
+        },
+        "keywords_fr.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "keyword_fr",
+              "type": "string",
+              "sample": "statistique-des-services-de-sante",
+              "include": true
+            }
+          ]
+        },
+        "datasets_to_keywords_de.csv": {
+          "expanded": true,
+          "fields": [
+            {
+              "name": "dataset_identifier",
+              "type": "string",
+              "sample": "736@awel-kanton-zuerich",
+              "include": true
+            },
+            {
+              "name": "keyword_de",
+              "type": "string",
+              "sample": "aushub",
+              "include": true
+            }
+          ]
+        }
+      }
+    },
+    "graphModel": {
+      "nodeSchemas": {
+        "n0": {
+          "label": "Catalog",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "source_id",
+              "type": "string",
+              "identifier": "2f13ba5f-bdc3-4f8e-b195-5663b35c5c5e"
+            },
+            {
+              "property": "name",
+              "type": "string",
+              "identifier": "6f734d5d-e001-4659-a485-3b966310412c"
+            },
+            {
+              "property": "title",
+              "type": "string",
+              "identifier": "5b61d8f4-92cd-4c6e-a893-704a406d9142"
+            },
+            {
+              "property": "url",
+              "type": "string",
+              "identifier": "cf2ecafe-8dad-4ba9-835e-c3e28c9eea33"
+            },
+            {
+              "property": "source_type",
+              "type": "string",
+              "identifier": "b7f6e9dd-8206-46dc-829d-dc39a9416f09"
+            }
+          ],
+          "key": {
+            "properties": [
+              "2f13ba5f-bdc3-4f8e-b195-5663b35c5c5e"
+            ],
+            "name": ""
+          }
+        },
+        "n1": {
+          "label": "Dataset",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "dataset_identifier",
+              "type": "string",
+              "identifier": "5d72f722-16a4-4418-bafb-c8e5a5e4de42"
+            },
+            {
+              "property": "name",
+              "type": "string",
+              "identifier": "28424547-696a-4974-bbf5-fe0acd136aef"
+            },
+            {
+              "property": "title_de",
+              "type": "string",
+              "identifier": "985cfdf6-1000-4b73-96af-a4846a00737e"
+            },
+            {
+              "property": "title_fr",
+              "type": "string",
+              "identifier": "0d1d849f-6ceb-47c2-bb3c-71ad7ca4e281"
+            },
+            {
+              "property": "title_en",
+              "type": "string",
+              "identifier": "726969d7-323d-4390-b864-7df8c9c4203d"
+            },
+            {
+              "property": "title_it",
+              "type": "string",
+              "identifier": "44298100-5a0f-4323-b2c0-c82ecac96fff"
+            },
+            {
+              "property": "description_de",
+              "type": "string",
+              "identifier": "d1bbf000-1d44-40a4-9372-ab78e5e4f18d"
+            },
+            {
+              "property": "description_fr",
+              "type": "string",
+              "identifier": "8f4aeca4-d4cf-4989-9d4b-3af27528f2b7"
+            },
+            {
+              "property": "description_en",
+              "type": "string",
+              "identifier": "9dacd798-dc56-44bc-bdb6-63611c07a864"
+            },
+            {
+              "property": "description_it",
+              "type": "string",
+              "identifier": "ff3dd28e-e5c6-4c63-858e-09234e23fac0"
+            },
+            {
+              "property": "frequency",
+              "type": "string",
+              "identifier": "639e0354-505b-43e5-9762-20a201a7dfcf"
+            },
+            {
+              "property": "access_url",
+              "type": "string",
+              "identifier": "ac2a5775-3a46-45a0-a3ad-1e77c2c3c9c8"
+            },
+            {
+              "property": "issued",
+              "type": "string",
+              "identifier": "79590b17-9f00-4060-aa30-806a6efbe1db"
+            },
+            {
+              "property": "modified",
+              "type": "string",
+              "identifier": "98c5d5d5-f836-4e92-90d8-c9766ef27cc7"
+            },
+            {
+              "property": "landing_page",
+              "type": "string",
+              "identifier": "05ebc4c9-d4d1-46e0-bd67-04667b416195"
+            },
+            {
+              "property": "spatial",
+              "type": "string",
+              "identifier": "4cd728f8-c923-4400-89e6-a4a75cccd10c"
+            },
+            {
+              "property": "temporal",
+              "type": "string",
+              "identifier": "ecc57168-2867-4f7d-88fc-bddaacdfca29"
+            },
+            {
+              "property": "relation",
+              "type": "string",
+              "identifier": "81867db5-c573-47d9-b583-6cdc718a9e2b"
+            },
+            {
+              "property": "publisher",
+              "type": "string",
+              "identifier": "1cd145eb-5c77-42de-bfab-aace4e5b89c5"
+            },
+            {
+              "property": "contact_points",
+              "type": "string",
+              "identifier": "9df5283c-9ddf-4ca0-b66f-7169b57b6442"
+            },
+            {
+              "property": "language",
+              "type": "string",
+              "identifier": "5356b031-4610-46d7-beab-7e8e0d28b7a7"
+            },
+            {
+              "property": "accrual_periodictity",
+              "type": "string",
+              "identifier": "369ca69e-419f-4486-87e5-e04bce4a0019"
+            }
+          ],
+          "key": {
+            "properties": [
+              "5d72f722-16a4-4418-bafb-c8e5a5e4de42"
+            ],
+            "name": ""
+          }
+        },
+        "n2": {
+          "label": "Showcase",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "showcase_name",
+              "type": "string",
+              "identifier": "4b87aa40-9489-448b-b2c9-3eedff648dd5"
+            },
+            {
+              "property": "title",
+              "type": "string",
+              "identifier": "94e1c1b9-c50b-40b7-a490-ce56e9a10171"
+            },
+            {
+              "property": "url",
+              "type": "string",
+              "identifier": "b58dd17b-19b7-4a8f-94a5-8f1c99a6d2df"
+            },
+            {
+              "property": "notes",
+              "type": "string",
+              "identifier": "fc199ca3-be2c-4a86-8e3e-3a43f1eb067d"
+            },
+            {
+              "property": "image_url",
+              "type": "string",
+              "identifier": "07ba5fa8-e3cd-4e52-988c-faf4b9fe2500"
+            },
+            {
+              "property": "showcase_notes_formatted",
+              "type": "string",
+              "identifier": "d8ef0a6a-62f8-4628-a3f0-0fa008c9ad32"
+            },
+            {
+              "property": "image_display_url",
+              "type": "string",
+              "identifier": "6c5a4859-0f4f-4800-961f-9b0d1bb142ec"
+            },
+            {
+              "property": "author",
+              "type": "string",
+              "identifier": "db30686c-c510-4340-b70c-a62a1c0e01ef"
+            },
+            {
+              "property": "author_email",
+              "type": "string",
+              "identifier": "c719cb13-0fcf-4fef-943a-de0c3f8b291c"
+            }
+          ],
+          "key": {
+            "properties": [
+              "4b87aa40-9489-448b-b2c9-3eedff648dd5"
+            ],
+            "name": ""
+          }
+        },
+        "n3": {
+          "label": "Distribution",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "distribution_id",
+              "type": "string",
+              "identifier": "9b731163-941a-4936-9598-fb209bde3883"
+            },
+            {
+              "property": "format",
+              "type": "string",
+              "identifier": "f1f5e88e-871b-4332-bf2b-6762f82ff01a"
+            },
+            {
+              "property": "media_type",
+              "type": "string",
+              "identifier": "276d4049-58b4-4853-86e7-e8e9f3df1b25"
+            },
+            {
+              "property": "download_url",
+              "type": "string",
+              "identifier": "250a2fcb-ec0c-4f42-bb12-15bdd5166eb3"
+            },
+            {
+              "property": "coverage",
+              "type": "string",
+              "identifier": "fd2d1e0a-476e-4bff-9cc6-569db6962273"
+            },
+            {
+              "property": "title_de",
+              "type": "string",
+              "identifier": "b981f13a-3f10-46ad-8fc7-16105ff11d72"
+            },
+            {
+              "property": "title_fr",
+              "type": "string",
+              "identifier": "55c9c429-f3a8-4176-ab97-0b3b4cf1dd12"
+            },
+            {
+              "property": "title_en",
+              "type": "string",
+              "identifier": "7230056a-5770-470d-a4b3-afa04eb470e4"
+            },
+            {
+              "property": "title_it",
+              "type": "string",
+              "identifier": "09ac9926-4185-48fa-9522-44772456e22b"
+            },
+            {
+              "property": "description_de",
+              "type": "string",
+              "identifier": "2a832270-1cf9-45d1-a9bf-a7f1d7990c77"
+            },
+            {
+              "property": "description_fr",
+              "type": "string",
+              "identifier": "a6ebf120-0f77-41d5-9535-c20a5ceb702e"
+            },
+            {
+              "property": "description_en",
+              "type": "string",
+              "identifier": "0c55db3c-dbd4-47bb-aba5-c670c6f4726b"
+            },
+            {
+              "property": "description_it",
+              "type": "string",
+              "identifier": "4b6d6003-62ab-4f86-9970-bf21953f3240"
+            },
+            {
+              "property": "byte_size",
+              "type": "string",
+              "identifier": "f0b2da04-18ae-417f-824b-0ebc0eb80507"
+            },
+            {
+              "property": "issued",
+              "type": "string",
+              "identifier": "fe353a44-33cc-485b-90e4-9164a8802f98"
+            },
+            {
+              "property": "modified",
+              "type": "string",
+              "identifier": "296616f3-34ce-48dc-90be-1395465b2f7e"
+            },
+            {
+              "property": "language",
+              "type": "string",
+              "identifier": "293129ad-95fe-47d9-812f-6600c3eaa256"
+            },
+            {
+              "property": "license",
+              "type": "string",
+              "identifier": "7974e2a0-5f44-482d-9270-88809aab8b9b"
+            },
+            {
+              "property": "access_url",
+              "type": "string",
+              "identifier": "31ca8df9-4a46-431e-a085-746000d414a1"
+            }
+          ],
+          "key": {
+            "properties": [
+              "9b731163-941a-4936-9598-fb209bde3883"
+            ],
+            "name": ""
+          }
+        },
+        "n4": {
+          "label": "Group",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "title_de",
+              "type": "string",
+              "identifier": "aebfb669-af13-4efc-8ca1-daaa071fc23a"
+            },
+            {
+              "property": "title_fr",
+              "type": "string",
+              "identifier": "ffc613aa-04df-4f74-9c15-aca69d223e8f"
+            },
+            {
+              "property": "title_en",
+              "type": "string",
+              "identifier": "fce1be86-3393-413e-a5a3-b42d8c1eb7ba"
+            },
+            {
+              "property": "title_it",
+              "type": "string",
+              "identifier": "244597a0-a339-4ace-b201-042fb3ec1ffc"
+            },
+            {
+              "property": "group_name",
+              "type": "string",
+              "identifier": "41d0515b-b329-4f6f-8e10-a1307f109f2c"
+            }
+          ],
+          "key": {
+            "properties": [
+              "41d0515b-b329-4f6f-8e10-a1307f109f2c"
+            ],
+            "name": ""
+          }
+        },
+        "n5": {
+          "label": "Organization",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "organization_name",
+              "type": "string",
+              "identifier": "8f363ca7-c77c-4de4-b095-83663bc7a691"
+            },
+            {
+              "property": "title_de",
+              "type": "string",
+              "identifier": "1947791c-3439-4cb2-8830-28de71a33657"
+            },
+            {
+              "property": "title_fr",
+              "type": "string",
+              "identifier": "9394703c-833f-4b17-8085-fa0c2f8a08e1"
+            },
+            {
+              "property": "title_en",
+              "type": "string",
+              "identifier": "4db43320-f35b-4c35-9669-0c7a52bd3131"
+            },
+            {
+              "property": "title_it",
+              "type": "string",
+              "identifier": "6b58fdf4-fc08-4b4d-81d9-39be93b8fc62"
+            },
+            {
+              "property": "description_de",
+              "type": "string",
+              "identifier": "52446ec2-7c3d-4a9f-96b6-a9ec34402fc3"
+            },
+            {
+              "property": "description_fr",
+              "type": "string",
+              "identifier": "862b2df7-9c78-4871-909b-97a1c3d9185b"
+            },
+            {
+              "property": "description_en",
+              "type": "string",
+              "identifier": "6a1a37be-67ab-461e-8da0-4ab3c8357c1d"
+            },
+            {
+              "property": "description_it",
+              "type": "string",
+              "identifier": "9162020b-54ce-4bac-acaa-d9259509fac6"
+            },
+            {
+              "property": "url",
+              "type": "string",
+              "identifier": "b4a1e441-eccf-4468-bd85-61309d92dbcd"
+            }
+          ],
+          "key": {
+            "properties": [
+              "8f363ca7-c77c-4de4-b095-83663bc7a691"
+            ],
+            "name": ""
+          }
+        },
+        "n6": {
+          "label": "Tag",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "tag_name",
+              "type": "string",
+              "identifier": "f67769cc-6878-49f7-8da9-48e826979659"
+            }
+          ],
+          "key": {
+            "properties": [
+              "f67769cc-6878-49f7-8da9-48e826979659"
+            ],
+            "name": ""
+          }
+        },
+        "n7": {
+          "label": "Applicationtype",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "application_type_name",
+              "type": "string",
+              "identifier": "bef5a540-facd-4791-9335-109d1b45d826"
+            }
+          ],
+          "key": {
+            "properties": [
+              "bef5a540-facd-4791-9335-109d1b45d826"
+            ],
+            "name": ""
+          }
+        },
+        "n9": {
+          "label": "Level",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "political_level_name",
+              "type": "string",
+              "identifier": "5bcfa300-41cc-4b7b-96b5-067ced362d68"
+            }
+          ],
+          "key": {
+            "properties": [
+              "5bcfa300-41cc-4b7b-96b5-067ced362d68"
+            ],
+            "name": ""
+          }
+        },
+        "n10": {
+          "label": "Format",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "format",
+              "type": "string",
+              "identifier": "f3383a13-67d8-4ecb-9af4-32855f94e4dc"
+            }
+          ],
+          "key": {
+            "properties": [
+              "f3383a13-67d8-4ecb-9af4-32855f94e4dc"
+            ],
+            "name": ""
+          }
+        },
+        "n11": {
+          "label": "TermsOfUse",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "right",
+              "type": "string",
+              "identifier": "ba4bbbae-97c9-4869-b234-497b5669a35d"
+            }
+          ],
+          "key": {
+            "properties": [
+              "ba4bbbae-97c9-4869-b234-497b5669a35d"
+            ],
+            "name": ""
+          }
+        },
+        "n12": {
+          "label": "KeywordEn",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "keyword_en",
+              "type": "string",
+              "identifier": "785e005b-b1f6-443d-9845-4579888e0553"
+            }
+          ],
+          "key": {
+            "properties": [
+              "785e005b-b1f6-443d-9845-4579888e0553"
+            ],
+            "name": ""
+          }
+        },
+        "n13": {
+          "label": "KeywordFr",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "keyword_fr",
+              "type": "string",
+              "identifier": "8ca13848-3f98-4b25-9ab7-41a69bc528ae"
+            }
+          ],
+          "key": {
+            "properties": [
+              "8ca13848-3f98-4b25-9ab7-41a69bc528ae"
+            ],
+            "name": ""
+          }
+        },
+        "n14": {
+          "label": "KeywordDe",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "keyword_de",
+              "type": "string",
+              "identifier": "8a73895e-a090-4eb1-ae11-dd7b00cee165"
+            }
+          ],
+          "key": {
+            "properties": [
+              "8a73895e-a090-4eb1-ae11-dd7b00cee165"
+            ],
+            "name": ""
+          }
+        },
+        "n15": {
+          "label": "KeywordIt",
+          "additionLabels": [],
+          "labelProperties": [],
+          "properties": [
+            {
+              "property": "keyword_it",
+              "type": "string",
+              "identifier": "4f67b1f7-ffcc-4e2a-b590-0f66128523de"
+            }
+          ],
+          "key": {
+            "properties": [
+              "4f67b1f7-ffcc-4e2a-b590-0f66128523de"
+            ],
+            "name": ""
+          }
+        }
+      },
+      "relationshipSchemas": {
+        "n1": {
+          "type": "HAS_DISTRIBUTION",
+          "sourceNodeSchema": "n1",
+          "targetNodeSchema": "n3",
+          "properties": []
+        },
+        "n2": {
+          "type": "BELONGS_TO",
+          "sourceNodeSchema": "n1",
+          "targetNodeSchema": "n5",
+          "properties": []
+        },
+        "n3": {
+          "type": "HAS_THEME",
+          "sourceNodeSchema": "n1",
+          "targetNodeSchema": "n4",
+          "properties": []
+        },
+        "n4": {
+          "type": "USES_DATASET",
+          "sourceNodeSchema": "n2",
+          "targetNodeSchema": "n1",
+          "properties": []
+        },
+        "n5": {
+          "type": "SEE_ALSO",
+          "sourceNodeSchema": "n1",
+          "targetNodeSchema": "n1",
+          "properties": []
+        },
+        "n6": {
+          "type": "HAS_TAG",
+          "sourceNodeSchema": "n2",
+          "targetNodeSchema": "n6",
+          "properties": []
+        },
+        "n7": {
+          "type": "HAS_APPLICATION_TYPE",
+          "sourceNodeSchema": "n2",
+          "targetNodeSchema": "n7",
+          "properties": []
+        },
+        "n8": {
+          "type": "HAS_GROUP",
+          "sourceNodeSchema": "n2",
+          "targetNodeSchema": "n4",
+          "properties": []
+        },
+        "n9": {
+          "type": "HAS_LEVEL",
+          "sourceNodeSchema": "n5",
+          "targetNodeSchema": "n9",
+          "properties": []
+        },
+        "n10": {
+          "type": "HAS_FORMAT",
+          "sourceNodeSchema": "n3",
+          "targetNodeSchema": "n10",
+          "properties": []
+        },
+        "n11": {
+          "type": "HAS_RIGHTS",
+          "sourceNodeSchema": "n3",
+          "targetNodeSchema": "n11",
+          "properties": []
+        },
+        "n15": {
+          "type": "HAS_KEYWORD_EN",
+          "sourceNodeSchema": "n1",
+          "targetNodeSchema": "n12",
+          "properties": []
+        },
+        "n16": {
+          "type": "HAS_KEYWORD_DE",
+          "sourceNodeSchema": "n1",
+          "targetNodeSchema": "n14",
+          "properties": []
+        },
+        "n17": {
+          "type": "HAS_KEYWORD_FR",
+          "sourceNodeSchema": "n1",
+          "targetNodeSchema": "n13",
+          "properties": []
+        },
+        "n18": {
+          "type": "HAS_KEYWORD_IT",
+          "sourceNodeSchema": "n1",
+          "targetNodeSchema": "n15",
+          "properties": []
+        },
+        "n19": {
+          "type": "HAS_PARENT",
+          "sourceNodeSchema": "n5",
+          "targetNodeSchema": "n5",
+          "properties": []
+        }
+      }
+    },
+    "mappingModel": {
+      "nodeMappings": {
+        "n0": {
+          "nodeSchema": "n0",
+          "fileSchema": "catalogs.csv",
+          "mappings": [
+            {
+              "field": "source_id"
+            },
+            {
+              "field": "name"
+            },
+            {
+              "field": "title"
+            },
+            {
+              "field": "url"
+            },
+            {
+              "field": "source_type"
+            }
+          ]
+        },
+        "n1": {
+          "nodeSchema": "n1",
+          "fileSchema": "datasets.csv",
+          "mappings": [
+            {
+              "field": "dataset_identifier"
+            },
+            {
+              "field": "name"
+            },
+            {
+              "field": "title_de"
+            },
+            {
+              "field": "title_fr"
+            },
+            {
+              "field": "title_en"
+            },
+            {
+              "field": "title_it"
+            },
+            {
+              "field": "description_de"
+            },
+            {
+              "field": "description_fr"
+            },
+            {
+              "field": "description_en"
+            },
+            {
+              "field": "description_it"
+            },
+            {
+              "field": "frequency"
+            },
+            {
+              "field": "access_url"
+            },
+            {
+              "field": "issued"
+            },
+            {
+              "field": "modified"
+            },
+            {
+              "field": "landing_page"
+            },
+            {
+              "field": "spatial"
+            },
+            {
+              "field": "temporal"
+            },
+            {
+              "field": "relation"
+            },
+            {
+              "field": "publisher"
+            },
+            {
+              "field": "contact_points"
+            },
+            {
+              "field": "language"
+            },
+            {
+              "field": "accrual_periodictity"
+            }
+          ]
+        },
+        "n2": {
+          "nodeSchema": "n2",
+          "fileSchema": "showcases.csv",
+          "mappings": [
+            {
+              "field": "showcase_name"
+            },
+            {
+              "field": "title"
+            },
+            {
+              "field": "url"
+            },
+            {
+              "field": "notes"
+            },
+            {
+              "field": "image_url"
+            },
+            {
+              "field": "showcase_notes_formatted"
+            },
+            {
+              "field": "image_display_url"
+            },
+            {
+              "field": "author"
+            },
+            {
+              "field": "author_email"
+            }
+          ]
+        },
+        "n3": {
+          "nodeSchema": "n3",
+          "fileSchema": "distributions.csv",
+          "mappings": [
+            {
+              "field": "distribution_id"
+            },
+            {
+              "field": "format"
+            },
+            {
+              "field": "media_type"
+            },
+            {
+              "field": "download_url"
+            },
+            {
+              "field": "coverage"
+            },
+            {
+              "field": "title_de"
+            },
+            {
+              "field": "title_fr"
+            },
+            {
+              "field": "title_en"
+            },
+            {
+              "field": "title_it"
+            },
+            {
+              "field": "description_de"
+            },
+            {
+              "field": "description_fr"
+            },
+            {
+              "field": "description_en"
+            },
+            {
+              "field": "description_it"
+            },
+            {
+              "field": "byte_size"
+            },
+            {
+              "field": "issued"
+            },
+            {
+              "field": "modified"
+            },
+            {
+              "field": "language"
+            },
+            {
+              "field": "license"
+            },
+            {
+              "field": "access_url"
+            }
+          ]
+        },
+        "n4": {
+          "nodeSchema": "n4",
+          "fileSchema": "groups.csv",
+          "mappings": [
+            {
+              "field": "title_de"
+            },
+            {
+              "field": "title_fr"
+            },
+            {
+              "field": "title_en"
+            },
+            {
+              "field": "title_it"
+            },
+            {
+              "field": "group_name"
+            }
+          ]
+        },
+        "n5": {
+          "nodeSchema": "n5",
+          "fileSchema": "organizations.csv",
+          "mappings": [
+            {
+              "field": "organization_name"
+            },
+            {
+              "field": "title_de"
+            },
+            {
+              "field": "title_fr"
+            },
+            {
+              "field": "title_en"
+            },
+            {
+              "field": "title_it"
+            },
+            {
+              "field": "description_de"
+            },
+            {
+              "field": "description_fr"
+            },
+            {
+              "field": "description_en"
+            },
+            {
+              "field": "description_it"
+            },
+            {
+              "field": "url"
+            }
+          ]
+        },
+        "n6": {
+          "nodeSchema": "n6",
+          "fileSchema": "tags.csv",
+          "mappings": [
+            {
+              "field": "tag_name"
+            }
+          ]
+        },
+        "n7": {
+          "nodeSchema": "n7",
+          "fileSchema": "application_types.csv",
+          "mappings": [
+            {
+              "field": "application_type_name"
+            }
+          ]
+        },
+        "n9": {
+          "nodeSchema": "n9",
+          "fileSchema": "political_levels.csv",
+          "mappings": [
+            {
+              "field": "political_level_name"
+            }
+          ]
+        },
+        "n10": {
+          "nodeSchema": "n10",
+          "fileSchema": "formats.csv",
+          "mappings": [
+            {
+              "field": "format"
+            }
+          ]
+        },
+        "n11": {
+          "nodeSchema": "n11",
+          "fileSchema": "rights.csv",
+          "mappings": [
+            {
+              "field": "right"
+            }
+          ]
+        },
+        "n12": {
+          "nodeSchema": "n12",
+          "fileSchema": "keywords_en.csv",
+          "mappings": [
+            {
+              "field": "keyword_en"
+            }
+          ]
+        },
+        "n13": {
+          "nodeSchema": "n13",
+          "fileSchema": "keywords_fr.csv",
+          "mappings": [
+            {
+              "field": "keyword_fr"
+            }
+          ]
+        },
+        "n14": {
+          "nodeSchema": "n14",
+          "fileSchema": "keywords_de.csv",
+          "mappings": [
+            {
+              "field": "keyword_de"
+            }
+          ]
+        },
+        "n15": {
+          "nodeSchema": "n15",
+          "fileSchema": "keywords_it.csv",
+          "mappings": [
+            {
+              "field": "keyword_it"
+            }
+          ]
+        }
+      },
+      "relationshipMappings": {
+        "n1": {
+          "relationshipSchema": "n1",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "distribution_id"
+            }
+          ],
+          "fileSchema": "datasets_to_distributions.csv"
+        },
+        "n2": {
+          "relationshipSchema": "n2",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "organization_name"
+            }
+          ],
+          "fileSchema": "datasets_to_organizations.csv"
+        },
+        "n3": {
+          "relationshipSchema": "n3",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "group_name"
+            }
+          ],
+          "fileSchema": "datasets_to_groups.csv"
+        },
+        "n4": {
+          "relationshipSchema": "n4",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "showcase_name"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "fileSchema": "showcases_to_datasets.csv"
+        },
+        "n5": {
+          "relationshipSchema": "n5",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "see_also_identifier"
+            }
+          ],
+          "fileSchema": "dataset_to_datasets.csv"
+        },
+        "n6": {
+          "relationshipSchema": "n6",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "showcase_name"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "tag_name"
+            }
+          ],
+          "fileSchema": "showcases_to_tags.csv"
+        },
+        "n7": {
+          "relationshipSchema": "n7",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "showcase_name"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "application_type_name"
+            }
+          ],
+          "fileSchema": "showcases_to_application_types.csv"
+        },
+        "n8": {
+          "relationshipSchema": "n8",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "showcase_name"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "group_name"
+            }
+          ],
+          "fileSchema": "showcases_to_groups.csv"
+        },
+        "n9": {
+          "relationshipSchema": "n9",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "organization_name"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "political_level_name"
+            }
+          ],
+          "fileSchema": "organization_to_political_level.csv"
+        },
+        "n10": {
+          "relationshipSchema": "n10",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "distribution_id"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "format"
+            }
+          ],
+          "fileSchema": "distributions_to_formats.csv"
+        },
+        "n11": {
+          "relationshipSchema": "n11",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "distribution_id"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "right"
+            }
+          ],
+          "fileSchema": "distributions_to_rights.csv"
+        },
+        "n15": {
+          "relationshipSchema": "n15",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "keyword_en"
+            }
+          ],
+          "fileSchema": "datasets_to_keywords_en.csv"
+        },
+        "n16": {
+          "relationshipSchema": "n16",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "keyword_de"
+            }
+          ],
+          "fileSchema": "datasets_to_keywords_de.csv"
+        },
+        "n17": {
+          "relationshipSchema": "n17",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "keyword_fr"
+            }
+          ],
+          "fileSchema": "datasets_to_keywords_fr.csv"
+        },
+        "n18": {
+          "relationshipSchema": "n18",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "dataset_identifier"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "keyword_it"
+            }
+          ],
+          "fileSchema": "datasets_to_keywords_it.csv"
+        },
+        "n19": {
+          "relationshipSchema": "n19",
+          "mappings": [],
+          "sourceMappings": [
+            {
+              "field": "organization_name"
+            }
+          ],
+          "targetMappings": [
+            {
+              "field": "parent_organization_name"
+            }
+          ],
+          "fileSchema": "organization_to_parent_organization.csv"
+        }
+      }
+    }
+  }
+}
